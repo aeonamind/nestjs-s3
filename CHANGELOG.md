@@ -1,5 +1,7 @@
 
 
+## [0.1.1](https://github.com/koujiman/nestjs-s3/compare/v0.1.0...v0.1.1) (2024-05-15)
+
 # 0.1.0 (2024-05-15)
 
 
