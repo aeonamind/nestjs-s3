@@ -4,7 +4,9 @@
     "tagName": "v${version}"
   },
   "github": {
-    "release": true
+    "release": true,
+    "releaseNotes": "git log --no-merges --pretty=format:\"* %s %h\" ${latestTag}...main",
+    "assets": ["dist/*.js"]
   },
   "npm": {
     "publish": true
