@@ -1,6 +1,6 @@
 {
   "name": "@koujiman/nestjs-s3",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Nest - modern, fast, powerful node.js web framework (@s3)",
   "author": "Trung Nguyen Nguyen",
   "license": "MIT",
