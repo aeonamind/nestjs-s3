@@ -17,3 +17,4 @@ renovate.json
 .eslintignore
 .eslintrc.js
 .circleci/
+.husky/
