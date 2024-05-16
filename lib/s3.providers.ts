@@ -11,7 +11,7 @@ import { S3Object, S3BucketService } from './interfaces';
 
 export function createS3Providers(
   bucketNames: string[],
-  clientName: string,
+  clientName?: string,
 ): Provider<S3BucketService>[] {
   return (bucketNames || []).map((bucketName) => ({
     provide: getBucketToken(bucketName, clientName),

@@ -1,4 +1,4 @@
-import { DynamicModule, Module } from '@nestjs/common';
+import { DynamicModule, Module, Provider } from '@nestjs/common';
 import { S3Client } from '@aws-sdk/client-s3';
 import {
   ASYNC_OPTIONS_TYPE,
@@ -12,12 +12,12 @@ import { S3ModuleOptions } from './interfaces';
 @Module({})
 export class S3CoreModule extends ConfigurableModuleClass {
   static forRoot(
-    options: typeof OPTIONS_TYPE & { clientName: string },
+    options: typeof OPTIONS_TYPE & { clientName?: string },
   ): DynamicModule {
     return {
       ...super.forRoot(options),
       providers: [
-        ...super.forRoot(options).providers,
+        ...(super.forRoot(options).providers as Provider[]),
         {
           provide: getClientToken(options.clientName),
           useFactory: (options: S3ModuleOptions) => new S3Client(options),
@@ -29,12 +29,12 @@ export class S3CoreModule extends ConfigurableModuleClass {
   }
 
   static forRootAsync(
-    options: typeof ASYNC_OPTIONS_TYPE & { clientName: string },
+    options: typeof ASYNC_OPTIONS_TYPE & { clientName?: string },
   ): DynamicModule {
     return {
       ...super.forRootAsync(options),
       providers: [
-        ...super.forRootAsync(options).providers,
+        ...(super.forRootAsync(options).providers as Provider[]),
         {
           provide: getClientToken(options.clientName),
           useFactory: (options: S3ModuleOptions) => new S3Client(options),
