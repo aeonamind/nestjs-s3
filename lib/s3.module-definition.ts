@@ -1,5 +1,18 @@
 import { ConfigurableModuleBuilder } from '@nestjs/common';
-import { S3ModuleOptions } from './s3.interface';
+import { S3ExtraModuleDefinitionOptions, S3ModuleOptions } from './interfaces';
 
-export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } =
-  new ConfigurableModuleBuilder<S3ModuleOptions>().build();
+export const {
+  ConfigurableModuleClass,
+  MODULE_OPTIONS_TOKEN,
+  OPTIONS_TYPE,
+  ASYNC_OPTIONS_TYPE,
+} = new ConfigurableModuleBuilder<S3ModuleOptions>()
+  .setExtras<S3ExtraModuleDefinitionOptions>(
+    { isGlobal: true },
+    (definition, extras) => ({
+      ...definition,
+      global: extras.isGlobal,
+    }),
+  )
+  .setClassMethodName('forRoot')
+  .build();
